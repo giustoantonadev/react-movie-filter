@@ -17,6 +17,13 @@ function App() {
   const [filteredGenre, setFilteredGenre] = useState(filmList)
 
 
+  useEffect(() => {
+    const filteredFilm = filmList.filter(film => film.genre === select)
+
+    setFilteredGenre(filteredFilm)
+
+  }, [select])
+
   return (
     <>
       <div className="d-flex justify-content-center">
@@ -25,10 +32,11 @@ function App() {
             <h1>Film List</h1>
 
             <select onChange={(e) => setSelect(e.target.value)}>
-              <option value="genreFantasy">Fantascienza</option>
-              <option value="genreThriller">Thriller</option>
-              <option value="genreRomance">Romantico</option>
-              <option value="genreAction">Azione</option>
+              <option value='tutti'>Tutti i Film</option>
+              <option value="Fantascienza">Fantascienza</option>
+              <option value="Thriller">Thriller</option>
+              <option value="Romance">Romantico</option>
+              <option value="Action">Azione</option>
             </select>
 
           </div>
