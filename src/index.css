@@ -5,3 +5,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body{
+  background-color: rgb(181, 181, 124);
+}
