@@ -13,12 +13,12 @@ const filmList = [
 
 function App() {
 
-  const [select, setSelect] = useState('')
+  const [select, setSelect] = useState('Tutti')
   const [filteredGenre, setFilteredGenre] = useState(filmList)
 
 
   useEffect(() => {
-    const filteredFilm = filmList.filter(film => film.genre === select)
+    const filteredFilm = filmList.filter(film => select === 'Tutti' || film.genre === select)
 
     setFilteredGenre(filteredFilm)
 
@@ -32,17 +32,17 @@ function App() {
             <h1>Film List</h1>
 
             <select onChange={(e) => setSelect(e.target.value)}>
-              <option value='tutti'>Tutti i Film</option>
+              <option value='Tutti'>Tutti i Film</option>
               <option value="Fantascienza">Fantascienza</option>
               <option value="Thriller">Thriller</option>
-              <option value="Romance">Romantico</option>
-              <option value="Action">Azione</option>
+              <option value="Romantico">Romantico</option>
+              <option value="Azione">Azione</option>
             </select>
 
           </div>
           <ul className="list-group list-group-flush">
 
-            {filmList.map((film, i) => (
+            {filteredGenre.map((film, i) => (
               <li className="list-group-item" key={i}>Title: {film.title}<br></br>Genre: {film.genre}</li>
             ))}
 
