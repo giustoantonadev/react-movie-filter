@@ -16,7 +16,9 @@ function App() {
   const [select, setSelect] = useState('Tutti')
   const [filteredGenre, setFilteredGenre] = useState(filmList)
 
+  const [search, setSearch] = useState('')
 
+  //filter by genre with select
   useEffect(() => {
     const filteredFilm = filmList.filter(film => select === 'Tutti' || film.genre === select)
 
@@ -24,15 +26,25 @@ function App() {
 
   }, [select])
 
+  //filter by title with text
+  useEffect(() => {
+
+    const filteredFilm = filmList.filter(film => film.title.toLowerCase().includes(search.toLowerCase()))
+
+    setFilteredGenre(filteredFilm)
+
+  }, [search])
+
   return (
     <>
       <div className="d-flex justify-content-center">
         <div className="card text-center" style={{ width: "25rem" }}>
           <div className="card-header">
             <h1>Film List</h1>
+            <input onChange={(e) => setSearch(e.target.value)} value={search} type='search' placeholder='Cerca per Titolo' />
 
             <select onChange={(e) => setSelect(e.target.value)}>
-              <option value='Tutti'>Tutti i Film</option>
+              <option value='Tutti'>Mostra tutti</option>
               <option value="Fantascienza">Fantascienza</option>
               <option value="Thriller">Thriller</option>
               <option value="Romantico">Romantico</option>
