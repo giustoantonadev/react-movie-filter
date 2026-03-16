@@ -13,6 +13,8 @@ const filmList = [
 
 function App() {
 
+  const [select, setSelect] = useState('')
+  const [filteredGenre, setFilteredGenre] = useState(filmList)
 
 
   return (
@@ -21,6 +23,14 @@ function App() {
         <div className="card text-center" style={{ width: "25rem" }}>
           <div className="card-header">
             <h1>Film List</h1>
+
+            <select onChange={(e) => setSelect(e.target.value)}>
+              <option value="genreFantasy">Fantascienza</option>
+              <option value="genreThriller">Thriller</option>
+              <option value="genreRomance">Romantico</option>
+              <option value="genreAction">Azione</option>
+            </select>
+
           </div>
           <ul className="list-group list-group-flush">
 
